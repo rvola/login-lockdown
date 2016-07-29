@@ -5,6 +5,8 @@ Plugin URI: http://www.bad-neighborhood.com/
 Version: v1.6.1
 Author: Michael VanDeMar
 Description: Adds some extra security to WordPress by restricting the rate at which failed logins can be re-attempted from a given IP range. Distributed through <a href="http://www.bad-neighborhood.com/" target="_blank">Bad Neighborhood</a>.
+Domain Path: /languages/
+Text Domain: loginlockdown
 */
 
 /*
@@ -87,6 +89,11 @@ Description: Adds some extra security to WordPress by restricting the rate at wh
 
 $loginlockdown_db_version = "1.0";
 $loginlockdownOptions = get_loginlockdownOptions();
+
+function loginLockdown_i18n() {
+	load_plugin_textdomain( 'loginlockdown', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+add_action( 'init', 'loginLockdown_i18n', 10 );
 
 function loginLockdown_install() {
 	global $wpdb;
@@ -262,7 +269,7 @@ function print_loginlockdownAdminPage() {
 		}
 		update_option("loginlockdownAdminOptions", $loginlockdownAdminOptions);
 		?>
-<div class="updated"><p><strong><?php _e("Settings Updated.", "loginlockdown");?></strong></p></div>
+<div class="updated"><p><strong><?php _e( 'Settings Updated.', 'loginlockdown' ); ?></strong></p></div>
 		<?php
 	}
 	if (isset($_POST['release_lockdowns'])) {
@@ -281,7 +288,7 @@ function print_loginlockdownAdminPage() {
 		}
 		update_option("loginlockdownAdminOptions", $loginlockdownAdminOptions);
 		?>
-<div class="updated"><p><strong><?php _e("Lockdowns Released.", "loginlockdown");?></strong></p></div>
+<div class="updated"><p><strong><?php _e( 'Lockdowns Released.', 'loginlockdown' ); ?></strong></p></div>
 		<?php
 	}
 	$dalist = listLockedDown();
@@ -292,32 +299,31 @@ function print_loginlockdownAdminPage() {
 if ( function_exists('wp_nonce_field') )
 	wp_nonce_field('login-lockdown_update-options');
 ?>
-<h2><?php _e('Login LockDown Options', 'loginlockdown') ?></h2>
-<h3><?php _e('Max Login Retries', 'loginlockdown') ?></h3>
-<p>Number of failed login attempts within the "Retry Time Period Restriction" (defined below) needed to trigger a LockDown.</p>
+<h2><?php printf( __( '%s Options', 'loginlockdown' ), 'Login LockDown'); ?></h2>
+<h3><?php _e( 'Max Login Retries', 'loginlockdown' ); ?></h3>
+<p><?php _e( 'Number of failed login attempts within the "Retry Time Period Restriction" (defined below) needed to trigger a LockDown.', 'loginlockdown' ); ?></p>
 <p><input type="text" name="ll_max_login_retries" size="8" value="<?php echo esc_attr($loginlockdownAdminOptions['max_login_retries']); ?>"></p>
-<h3><?php _e('Retry Time Period Restriction (minutes)', 'loginlockdown') ?></h3>
-<p>Amount of time that determines the rate at which failed login attempts are allowed before a LockDown occurs.</p>
+<h3><?php _e( 'Retry Time Period Restriction (minutes)', 'loginlockdown' ); ?></h3>
+<p><?php _e( 'Amount of time that determines the rate at which failed login attempts are allowed before a LockDown occurs.', 'loginlockdown');?></p>
 <p><input type="text" name="ll_retries_within" size="8" value="<?php echo esc_attr($loginlockdownAdminOptions['retries_within']); ?>"></p>
-<h3><?php _e('Lockout Length (minutes)', 'loginlockdown') ?></h3>
-<p>How long a particular IP block will be locked out for once a LockDown has been triggered.</p>
+<h3><?php _e( 'Lockout Length (minutes)', 'loginlockdown' ); ?></h3>
+<p><?php _e( 'How long a particular IP block will be locked out for once a LockDown has been triggered.', 'loginlockdown');?></p>
 <p><input type="text" name="ll_lockout_length" size="8" value="<?php echo esc_attr($loginlockdownAdminOptions['lockout_length']); ?>"></p>
-<h3><?php _e('Lockout Invalid Usernames?', 'loginlockdown') ?></h3>
-<p>By default Login LockDown will not trigger if an attempt is made to log in using a username that does not exist. You can override this behavior here.</p>
-<p><input type="radio" name="ll_lockout_invalid_usernames" value="yes" <?php if( $loginlockdownAdminOptions['lockout_invalid_usernames'] == "yes" ) echo "checked"; ?>>&nbsp;Yes&nbsp;&nbsp;&nbsp;<input type="radio" name="ll_lockout_invalid_usernames" value="no" <?php if( $loginlockdownAdminOptions['lockout_invalid_usernames'] == "no" ) echo "checked"; ?>>&nbsp;No</p>
-<h3><?php _e('Mask Login Errors?', 'loginlockdown') ?></h3>
-<p>WordPress will normally display distinct messages to the user depending on whether they try and log in with an invalid username, or with a 
-valid username but the incorrect password. Toggling this option will hide why the login failed.</p>
-<p><input type="radio" name="ll_mask_login_errors" value="yes" <?php if( $loginlockdownAdminOptions['mask_login_errors'] == "yes" ) echo "checked"; ?>>&nbsp;Yes&nbsp;&nbsp;&nbsp;<input type="radio" name="ll_mask_login_errors" value="no" <?php if( $loginlockdownAdminOptions['mask_login_errors'] == "no" ) echo "checked"; ?>>&nbsp;No</p>
-<h3><?php _e('Show Credit Link?', 'loginlockdown') ?></h3>
-<p>By default, Login LockDown will display the following message on the login form:<br />
-<blockquote>Login form protected by <a href='http://www.bad-neighborhood.com/login-lockdown.html'>Login LockDown</a>.</blockquote>
-This helps others know about the plugin so they can protect their blogs as well if they like. However, you can disable this message if you prefer.</p>
-<input type="radio" name="ll_show_credit_link" value="yes" <?php if( $loginlockdownAdminOptions['show_credit_link'] == "yes" || $loginlockdownAdminOptions['show_credit_link'] == "" ) echo "checked"; ?>>&nbsp;Yes, display the credit link.<br />
-<input type="radio" name="ll_show_credit_link" value="shownofollow" <?php if( $loginlockdownAdminOptions['show_credit_link'] == "shownofollow" ) echo "checked"; ?>>&nbsp;Display the credit link, but add "rel='nofollow'" (ie. do not pass any link juice).<br />
-<input type="radio" name="ll_show_credit_link" value="no" <?php if( $loginlockdownAdminOptions['show_credit_link'] == "no" ) echo "checked"; ?>>&nbsp;No, do not display the credit link.<br />
+<h3><?php _e( 'Lockout Invalid Usernames?', 'loginlockdown' ); ?></h3>
+<p><?php _e( 'By default Login LockDown will not trigger if an attempt is made to log in using a username that does not exist. You can override this behavior here.', 'loginlockdown');?></p>
+<p><input type="radio" name="ll_lockout_invalid_usernames" value="yes" <?php if( $loginlockdownAdminOptions['lockout_invalid_usernames'] == "yes" ) echo "checked"; ?>>&nbsp;<?php _e( 'Yes', 'loginlockdown' ); ?>&nbsp;&nbsp;&nbsp;<input type="radio" name="ll_lockout_invalid_usernames" value="no" <?php if( $loginlockdownAdminOptions['lockout_invalid_usernames'] == "no" ) echo "checked"; ?>>&nbsp;<?php _e( 'No', 'loginlockdown' ); ?></p>
+<h3><?php _e( 'Mask Login Errors?', 'loginlockdown' ); ?></h3>
+<p><?php _e( 'WordPress will normally display distinct messages to the user depending on whether they try and log in with an invalid username, or with a valid username but the incorrect password. Toggling this option will hide why the login failed.', 'loginlockdown' ); ?></p>
+<p><input type="radio" name="ll_mask_login_errors" value="yes" <?php if( $loginlockdownAdminOptions['mask_login_errors'] == "yes" ) echo "checked"; ?>>&nbsp;<?php _e( 'Yes', 'loginlockdown' ); ?>&nbsp;&nbsp;&nbsp;<input type="radio" name="ll_mask_login_errors" value="no" <?php if( $loginlockdownAdminOptions['mask_login_errors'] == "no" ) echo "checked"; ?>>&nbsp;<?php _e( 'No', 'loginlockdown' ); ?></p>
+<h3><?php _e( 'Show Credit Link?', 'loginlockdown' ); ?></h3>
+<p><?php _e( 'By default, Login LockDown will display the following message on the login form:', 'loginlockdown' ); ?><br />
+<blockquote><?php printf( __( 'Login form protected by <a href="%1$s">%2$s</a>.', 'loginlockdown' ), 'http://www.bad-neighborhood.com/login-lockdown.html', 'Login LockDown' );?></blockquote>
+<?php _e( 'This helps others know about the plugin so they can protect their blogs as well if they like. However, you can disable this message if you prefer.', 'loginlockdown' ); ?></p>
+<input type="radio" name="ll_show_credit_link" value="yes" <?php if( $loginlockdownAdminOptions['show_credit_link'] == "yes" || $loginlockdownAdminOptions['show_credit_link'] == "" ) echo "checked"; ?>>&nbsp;<?php _e( 'Yes, display the credit link.', 'loginlockdown' ); ?><br />
+<input type="radio" name="ll_show_credit_link" value="shownofollow" <?php if( $loginlockdownAdminOptions['show_credit_link'] == "shownofollow" ) echo "checked"; ?>>&nbsp;<?php _e('Display the credit link, but add "rel=\'nofollow\'" (ie. do not pass any link juice).', 'loginlockdown' ); ?><br />
+<input type="radio" name="ll_show_credit_link" value="no" <?php if( $loginlockdownAdminOptions['show_credit_link'] == "no" ) echo "checked"; ?>>&nbsp;<?php _e( 'No, do not display the credit link.', 'loginlockdown' ); ?><br />
 <div class="submit">
-<input type="submit" class="button button-primary" name="update_loginlockdownSettings" value="<?php _e('Update Settings', 'loginlockdown') ?>" /></div>
+<input type="submit" class="button button-primary" name="update_loginlockdownSettings" value="<?php _e( 'Update Settings', 'loginlockdown' ); ?>" /></div>
 </form>
 <br />
 <form method="post" action="<?php echo esc_attr($_SERVER["REQUEST_URI"]); ?>">
@@ -325,21 +331,21 @@ This helps others know about the plugin so they can protect their blogs as well 
 if ( function_exists('wp_nonce_field') )
 	wp_nonce_field('login-lockdown_release-lockdowns');
 ?>
-<h3><?php _e('Currently Locked Out', 'loginlockdown') ?></h3>
+<h3><?php _e( 'Currently Locked Out', 'loginlockdown' ); ?></h3>
 <?php
 	$num_lockedout = count($dalist);
 	if( 0 == $num_lockedout ) {
-		echo "<p>No IP blocks currently locked out.</p>";
+		echo '<p>' . __( 'No IP blocks currently locked out.', 'loginlockdown' ) . '</p>';
 	} else {
 		foreach ( $dalist as $key => $option ) {
 			?>
-<li><input type="checkbox" name="releaseme[]" value="<?php echo esc_attr($option['lockdown_ID']); ?>"> <?php echo esc_attr($option['lockdown_IP']); ?> (<?php echo esc_attr($option['minutes_left']); ?> minutes left)</li>
+<li><input type="checkbox" name="releaseme[]" value="<?php echo esc_attr($option['lockdown_ID']); ?>"> <?php echo esc_attr($option['lockdown_IP']); ?> (<?php printf( __( '%s minutes left', 'loginlockdown' ), esc_attr( $option['minutes_left'] ) ); ?>)</li>
 			<?php
 		}
 	}
 ?>
 <div class="submit">
-<input type="submit" class="button button-primary" name="release_lockdowns" value="<?php _e('Release Selected', 'loginlockdown') ?>" /></div>
+<input type="submit" class="button button-primary" name="release_lockdowns" value="<?php _e( 'Release Selected', 'loginlockdown' ); ?>" /></div>
 </form>
 </div>
 <?php
@@ -361,7 +367,14 @@ function ll_credit_link(){
 		$relnofollow = "";
 	}
 	if ( $showcreditlink != "no" ) {
-		echo "<p>Login form protected by <a href='http://www.bad-neighborhood.com/login-lockdown.html' $relnofollow>Login LockDown</a>.<br /><br /><br /></p>";
+		echo '<p>';
+		printf(
+			__( 'Login form protected by <a href="%1$s" %2$s>%3$s</a>.' , 'loginlockdown' ),
+			'http://www.bad-neighborhood.com/login-lockdown.html',
+			$relnofollow,
+			'Login LockDown'
+		);
+		echo '<br /><br /><br /></p>';
 	}
 }
 
@@ -387,10 +400,10 @@ if ( isset($loginlockdown_db_version) ) {
 			$error = new WP_Error();
 
 			if ( empty($username) )
-				$error->add('empty_username', __('<strong>ERROR</strong>: The username field is empty.'));
+				$error->add( 'empty_username', __( '<strong>ERROR</strong>: The username field is empty.', 'loginlockdown' ) );
 
 			if ( empty($password) )
-				$error->add('empty_password', __('<strong>ERROR</strong>: The password field is empty.'));
+				$error->add( 'empty_password', __( '<strong>ERROR</strong>: The password field is empty.', 'loginlockdown' ) );
 
 			return $error;
 		}
@@ -398,7 +411,7 @@ if ( isset($loginlockdown_db_version) ) {
 		$userdata = get_user_by('login',$username);
 
 		if ( !$userdata ) {
-			return new WP_Error('invalid_username', sprintf(__('<strong>ERROR</strong>: Invalid username. <a href="%s" title="Password Lost and Found">Lost your password</a>?'), site_url('wp-login.php?action=lostpassword', 'login')));
+			return new WP_Error( 'invalid_username', sprintf( __( '<strong>ERROR</strong>: Invalid username. <a href="%s" title="Password Lost and Found">Lost your password</a>?', 'loginlockdown' ), site_url( 'wp-login.php?action=lostpassword', 'login' ) ) );
 		}
 
 		$userdata = apply_filters('wp_authenticate_user', $userdata, $password);
@@ -407,7 +420,7 @@ if ( isset($loginlockdown_db_version) ) {
 		}
 
 		if ( !wp_check_password($password, $userdata->user_pass, $userdata->ID) ) {
-			return new WP_Error('incorrect_password', sprintf(__('<strong>ERROR</strong>: Incorrect password. <a href="%s" title="Password Lost and Found">Lost your password</a>?'), site_url('wp-login.php?action=lostpassword', 'login')));
+			return new WP_Error( 'incorrect_password', sprintf( __( '<strong>ERROR</strong>: Incorrect password. <a href="%s" title="Password Lost and Found">Lost your password</a>?', 'loginlockdown' ), site_url( 'wp-login.php?action=lostpassword', 'login' ) ) ) ;
 		}
 
 		$user =  new WP_User($userdata->ID);
@@ -424,8 +437,7 @@ if ( isset($loginlockdown_db_version) ) {
 		$password = trim($password);
 
 		if ( "" != isLockedDown() ) {
-			return new WP_Error('incorrect_password', "<strong>ERROR</strong>: We're sorry, but this IP range has been blocked due to too many recent " .
-					"failed login attempts.<br /><br />Please try again later.");
+			return new WP_Error( 'incorrect_password', __( '<strong>ERROR</strong>: We’re sorry, but this IP range has been blocked due to too many recent failed login attempts.<br /><br />Please try again later.', 'loginlockdown' ) );
 		}
 
 		$user = apply_filters('authenticate', null, $username, $password);
@@ -433,7 +445,7 @@ if ( isset($loginlockdown_db_version) ) {
 		if ( $user == null ) {
 			// TODO what should the error message be? (Or would these even happen?)
 			// Only needed if all authentication handlers fail to return anything.
-			$user = new WP_Error('authentication_failed', __('<strong>ERROR</strong>: Invalid username or incorrect password.'));
+			$user = new WP_Error( 'authentication_failed', __( '<strong>ERROR</strong>: Invalid username or incorrect password.', 'loginlockdown' ) );
 		}
 
 		$ignore_codes = array('empty_username', 'empty_password');
@@ -442,11 +454,10 @@ if ( isset($loginlockdown_db_version) ) {
 			incrementFails($username);
 			if ( $loginlockdownOptions['max_login_retries'] <= countFails($username) ) {
 				lockDown($username);
-				return new WP_Error('incorrect_password', __("<strong>ERROR</strong>: We're sorry, but this IP range has been blocked due to too many recent " .
-						"failed login attempts.<br /><br />Please try again later."));
+				return new WP_Error( 'incorrect_password', __( '<strong>ERROR</strong>: We’re sorry, but this IP range has been blocked due to too many recent failed login attempts.<br /><br />Please try again later.', 'loginlockdown' ) );
 			}
 			if ( 'yes' == $loginlockdownOptions['mask_login_errors'] ) {
-				return new WP_Error('authentication_failed', sprintf(__('<strong>ERROR</strong>: Invalid username or incorrect password. <a href="%s" title="Password Lost and Found">Lost your password</a>?'), site_url('wp-login.php?action=lostpassword', 'login')));
+				return new WP_Error( 'authentication_failed', sprintf( __( '<strong>ERROR</strong>: Invalid username or incorrect password. <a href="%s" title="Password Lost and Found">Lost your password</a>?', 'loginlockdown' ), site_url( 'wp-login.php?action=lostpassword', 'login' ) ) );
 			} else {
 				do_action('wp_login_failed', $username);
 			}
