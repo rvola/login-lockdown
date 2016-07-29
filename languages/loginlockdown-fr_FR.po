@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Login LockDown - 1.7\n"
 "POT-Creation-Date: 2016-07-29 16:36+0200\n"
-"PO-Revision-Date: 2016-07-29 17:06+0200\n"
+"PO-Revision-Date: 2016-07-29 17:55+0200\n"
 "Last-Translator: studio RVOLA <hello@rvola.com>\n"
 "Language-Team: studio RVOLA <http://www.rvola.com>\n"
 "Language: fr_FR\n"
@@ -22,7 +22,7 @@ msgstr "Options enregistrées"
 
 #: loginlockdown.php:291
 msgid "Lockdowns Released."
-msgstr "Libérés Lockdowns."
+msgstr "IP libérés du verrouillage."
 
 #: loginlockdown.php:302
 #, php-format
