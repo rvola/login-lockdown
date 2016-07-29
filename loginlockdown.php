@@ -2,7 +2,7 @@
 /* 
 Plugin Name: Login LockDown
 Plugin URI: http://www.bad-neighborhood.com/
-Version: v1.6.1
+Version: v1.7.0
 Author: Michael VanDeMar
 Description: Adds some extra security to WordPress by restricting the rate at which failed logins can be re-attempted from a given IP range. Distributed through <a href="http://www.bad-neighborhood.com/" target="_blank">Bad Neighborhood</a>.
 Domain Path: /languages/
@@ -11,6 +11,11 @@ Text Domain: loginlockdown
 
 /*
 == Change Log ==
+*
+* ver. 1.7.0 29-July-2016
+*
+* - Full translation and translation preparation Glotpress
+* - Testing and verification WordPress 4.6
 *
 * ver. 1.6.1 8-Mar-2014
 * - fixed html glitch preventing options from being saved

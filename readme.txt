@@ -1,15 +1,16 @@
 === Login LockDown ===
 Developer: Michael VanDeMar (michael@endlesspoetry.com)
+Contributors: rvola
 Tags: security, login
 Requires at least: 3.6
-Tested up to: 4.0
-Stable Tag: 1.6.1
+Tested up to: 4.6
+Stable Tag: 1.7.0
 
 Limits the number of login attempts from a given IP range within a certain time period.
 
 == Description ==
 
-Login LockDown records the IP address and timestamp of every failed login attempt. If more than a 
+Login LockDown records the IP address and timestamp of every failed login attempt. If more than a
 certain number of attempts are detected within a short period of time from the same
 IP range, then the login function is disabled for all requests from that range.
 This helps to prevent brute force password discovery. Currently the plugin defaults
@@ -25,6 +26,11 @@ via the Options panel. Admisitrators can release locked out IP ranges manually f
 Enjoy.
 
 == Change Log ==
+
+ ver. 1.7.0 29-July-2016
+
+ - Full translation and translation preparation Glotpress
+ - Testing and verification WordPress 4.6
 
  ver. 1.6.1 8-Mar-2014
 
