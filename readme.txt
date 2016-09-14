@@ -1,6 +1,6 @@
 === Login LockDown ===
-Developer: Michael VanDeMar (michael@endlesspoetry.com)
-Contributors: rvola
+Developer: studio RVOLA
+Developer original: Michael VanDeMar - http://www.bad-neighborhood.com
 Tags: security, login
 Requires at least: 3.6
 Tested up to: 4.6

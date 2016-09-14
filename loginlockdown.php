@@ -1,10 +1,11 @@
 <?php
 /* 
 Plugin Name: Login LockDown
-Plugin URI: http://www.bad-neighborhood.com/
-Version: v1.7.0
-Author: Michael VanDeMar
-Description: Adds some extra security to WordPress by restricting the rate at which failed logins can be re-attempted from a given IP range. Distributed through <a href="http://www.bad-neighborhood.com/" target="_blank">Bad Neighborhood</a>.
+Plugin URI: https://github.com/rvola/login-lockdown/
+Version: rvola-1.7.1
+Author: studio RVOLA
+Author original: Michael VanDeMar - http://www.bad-neighborhood.com
+Description: Adds some extra security to WordPress by restricting the rate at which failed logins can be re-attempted from a given IP range.
 Domain Path: /languages/
 Text Domain: loginlockdown
 */
@@ -322,7 +323,7 @@ if ( function_exists('wp_nonce_field') )
 <p><input type="radio" name="ll_mask_login_errors" value="yes" <?php if( $loginlockdownAdminOptions['mask_login_errors'] == "yes" ) echo "checked"; ?>>&nbsp;<?php _e( 'Yes', 'loginlockdown' ); ?>&nbsp;&nbsp;&nbsp;<input type="radio" name="ll_mask_login_errors" value="no" <?php if( $loginlockdownAdminOptions['mask_login_errors'] == "no" ) echo "checked"; ?>>&nbsp;<?php _e( 'No', 'loginlockdown' ); ?></p>
 <h3><?php _e( 'Show Credit Link?', 'loginlockdown' ); ?></h3>
 <p><?php _e( 'By default, Login LockDown will display the following message on the login form:', 'loginlockdown' ); ?><br />
-<blockquote><?php printf( __( 'Login form protected by <a href="%1$s">%2$s</a>.', 'loginlockdown' ), 'http://www.bad-neighborhood.com/login-lockdown.html', 'Login LockDown' );?></blockquote>
+<blockquote><?php printf( __( 'Login form protected by <a href="%1$s">%2$s</a>.', 'loginlockdown' ), 'https://github.com/rvola/login-lockdown', 'Login LockDown' );?></blockquote>
 <?php _e( 'This helps others know about the plugin so they can protect their blogs as well if they like. However, you can disable this message if you prefer.', 'loginlockdown' ); ?></p>
 <input type="radio" name="ll_show_credit_link" value="yes" <?php if( $loginlockdownAdminOptions['show_credit_link'] == "yes" || $loginlockdownAdminOptions['show_credit_link'] == "" ) echo "checked"; ?>>&nbsp;<?php _e( 'Yes, display the credit link.', 'loginlockdown' ); ?><br />
 <input type="radio" name="ll_show_credit_link" value="shownofollow" <?php if( $loginlockdownAdminOptions['show_credit_link'] == "shownofollow" ) echo "checked"; ?>>&nbsp;<?php _e('Display the credit link, but add "rel=\'nofollow\'" (ie. do not pass any link juice).', 'loginlockdown' ); ?><br />
@@ -375,7 +376,7 @@ function ll_credit_link(){
 		echo '<p>';
 		printf(
 			__( 'Login form protected by <a href="%1$s" %2$s>%3$s</a>.' , 'loginlockdown' ),
-			'http://www.bad-neighborhood.com/login-lockdown.html',
+			'https://github.com/rvola/login-lockdown',
 			$relnofollow,
 			'Login LockDown'
 		);
