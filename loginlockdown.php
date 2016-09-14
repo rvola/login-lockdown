@@ -161,9 +161,9 @@ function listLockedDown() {
 function get_loginlockdownOptions() {
 	$loginlockdownAdminOptions = array(
 		'max_login_retries' => 3,
-		'retries_within' => 5,
-		'lockout_length' => 60,
-		'lockout_invalid_usernames' => 'no',
+		'retries_within' => 60,
+		'lockout_length' => 1440,
+		'lockout_invalid_usernames' => 'yes',
 		'mask_login_errors' => 'no',
 		'show_credit_link' => 'yes'
 	);
