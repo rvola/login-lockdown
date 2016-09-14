@@ -3,8 +3,8 @@ Developer: studio RVOLA
 Developer original: Michael VanDeMar - http://www.bad-neighborhood.com
 Tags: security, login
 Requires at least: 3.6
-Tested up to: 4.6
-Stable Tag: 1.7.0
+Tested up to: 4.6.1
+Stable Tag: 1.7.1
 
 Limits the number of login attempts from a given IP range within a certain time period.
 
