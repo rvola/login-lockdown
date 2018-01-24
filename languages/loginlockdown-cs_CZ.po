@@ -1,0 +1,229 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Login LockDown\n"
+"POT-Creation-Date: 2016-09-14 12:09+0200\n"
+"PO-Revision-Date: 2018-01-24 20:58+0100\n"
+"Last-Translator: Vladan Kudlac <vladankudlac@gmail.com>\n"
+"Language-Team: \n"
+"Language: cs_CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;esc_html__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: loginlockdown.php:231
+msgid "Settings Updated."
+msgstr "Nastavení bylo uloženo."
+
+#: loginlockdown.php:250
+msgid "Lockdowns Released."
+msgstr "IP adresy uvolněny."
+
+#: loginlockdown.php:261
+msgid "Login LockDown Options"
+msgstr "Možnosti Login LockDown"
+
+#: loginlockdown.php:264
+msgid "Settings"
+msgstr "Nastavení"
+
+#: loginlockdown.php:265
+#, php-format
+msgid "Activity (%d)"
+msgstr "Aktivita (%d)"
+
+#: loginlockdown.php:274
+msgid "Max Login Retries"
+msgstr "Max. počet pokusů"
+
+#: loginlockdown.php:275
+msgid ""
+"Number of failed login attempts within the \"Retry Time Period Restriction"
+"\" (defined below) needed to trigger a LockDown."
+msgstr ""
+"Počet neúspěšných pokusů v rámci „Doby zaznamenávání pokusů“ (definované "
+"níže) potřebný k aktivovaní blokace."
+
+#: loginlockdown.php:277
+msgid "Retry Time Period Restriction (minutes)"
+msgstr "Doba zaznamenávání pokusů (minuty)"
+
+#: loginlockdown.php:278
+msgid ""
+"Amount of time that determines the rate at which failed login attempts are "
+"allowed before a LockDown occurs."
+msgstr ""
+"Počet minut během kterých se sčítá množství neúspěšných přihlášení, která "
+"jsou povolena před zablokováním."
+
+#: loginlockdown.php:280
+msgid "Lockout Length (minutes)"
+msgstr "Doba blokování (minuty)"
+
+#: loginlockdown.php:281
+msgid ""
+"How long a particular IP block will be locked out for once a LockDown has "
+"been triggered."
+msgstr ""
+"Jak dlouho bude konkrétní IP adresa blokovaná od okamžiku, kdy dojde k "
+"zablokování."
+
+#: loginlockdown.php:283
+msgid "Lockout Invalid Usernames?"
+msgstr "Blokovat neplatná uživatelská jména?"
+
+#: loginlockdown.php:284
+msgid ""
+"By default Login LockDown will not trigger if an attempt is made to log in "
+"using a username that does not exist. You can override this behavior here."
+msgstr ""
+"Ve výchozím nastavení se při pokusu o přihlášení pomocí neexistujícího "
+"uživatelského jména nezapne funkce blokování. Zde můžete toto chování změnit."
+
+#: loginlockdown.php:285 loginlockdown.php:288
+msgid "Yes"
+msgstr "Ano"
+
+#: loginlockdown.php:285 loginlockdown.php:288
+msgid "No"
+msgstr "Ne"
+
+#: loginlockdown.php:286
+msgid "Mask Login Errors?"
+msgstr "Maskovat přihlašovací chyby?"
+
+#: loginlockdown.php:287
+msgid ""
+"WordPress will normally display distinct messages to the user depending on "
+"whether they try and log in with an invalid username, or with a valid "
+"username but the incorrect password. Toggling this option will hide why the "
+"login failed."
+msgstr ""
+"WordPress obvykle zobrazí uživateli různé zprávy podle toho, zda se pokusí o "
+"přihlášení s neplatným uživatelským jménem, nebo platným uživatelským jménem "
+"ale nesprávným heslem. Zapnutím této možnosti skryjete důvod, proč se "
+"přihlášení nezdařilo."
+
+#: loginlockdown.php:289
+msgid "Show Credit Link?"
+msgstr "Zobrazit odkaz na plugin?"
+
+#: loginlockdown.php:290
+msgid ""
+"By default, Login LockDown will display the following message on the login "
+"form:"
+msgstr ""
+"Ve výchozím nastavení zobrazí Login LockDown v přihlašovacím formuláři "
+"následující text:"
+
+#: loginlockdown.php:291
+#, php-format
+msgid "Login form protected by <a href=\"%1$s\">%2$s</a>."
+msgstr "Přihlašovací formulář chrání <a href=\"%1$s\">%2$s</a>."
+
+#: loginlockdown.php:292
+msgid ""
+"This helps others know about the plugin so they can protect their blogs as "
+"well if they like. However, you can disable this message if you prefer."
+msgstr ""
+"To pomáhá ostatním se o pluginu dozvědět, takže mohou také chránit své "
+"blogy, pokud chtějí. Tuto zprávu však můžete deaktivovat, pokud chcete."
+
+#: loginlockdown.php:293
+msgid "Yes, display the credit link."
+msgstr "Ano, zobrazit odkaz."
+
+#: loginlockdown.php:294
+msgid ""
+"Display the credit link, but add \"rel='nofollow'\" (ie. do not pass any "
+"link juice)."
+msgstr ""
+"Zobrazit odkaz, ale přidat atribut \"rel='nofollow'\" (nesledovat tento "
+"konkrétní odkaz)."
+
+#: loginlockdown.php:295
+msgid "No, do not display the credit link."
+msgstr "Ne, nezobrazovat odkaz."
+
+#: loginlockdown.php:297
+msgid "Update Settings"
+msgstr "Uložit změny"
+
+#: loginlockdown.php:305
+#, php-format
+msgid "There is currently %d locked out IP address."
+msgid_plural "There are currently %d locked out IP addresses."
+msgstr[0] "V tuto chvíli je zablokovaná %d IP adresa."
+msgstr[1] "V tuto chvíli jsou zablokované %d IP adresy."
+msgstr[2] "V tuto chvíli je zablokováno %d IP adres."
+
+#: loginlockdown.php:310
+msgid "No IP blocks currently locked out."
+msgstr "Aktuálně nejsou zablokovány žádné IP adresy."
+
+#: loginlockdown.php:314
+#, php-format
+msgid "%s minutes left"
+msgstr "%s minut zbývá"
+
+#: loginlockdown.php:320
+msgid "Release Selected"
+msgstr "Uvolnit zvolené"
+
+#: loginlockdown.php:345
+#, php-format
+msgid "Login form protected by <a href=\"%1$s\" %2$s>%3$s</a>."
+msgstr "Přihlašovací formulář chrání <a href=\"%1$s\" %2$s=\"\">%3$s</a>."
+
+#: loginlockdown.php:376
+msgid "<strong>ERROR</strong>: The username field is empty."
+msgstr "<strong>CHYBA</strong>: Uživatelské jméno nebylo zadáno."
+
+#: loginlockdown.php:379
+msgid "<strong>ERROR</strong>: The password field is empty."
+msgstr "<strong>CHYBA</strong>: Heslo nebylo zadáno."
+
+#: loginlockdown.php:387
+#, php-format
+msgid ""
+"<strong>ERROR</strong>: Invalid username. <a href=\"%s\" title=\"Password "
+"Lost and Found\">Lost your password</a>?"
+msgstr ""
+"<strong>CHYBA</strong>: Neplatné uživatelské jméno. <a href=\"%s\" title="
+"\"Obnovení zapomenutého hesla\">Zapomněli jste heslo?</a>?"
+
+#: loginlockdown.php:396
+#, php-format
+msgid ""
+"<strong>ERROR</strong>: Incorrect password. <a href=\"%s\" title=\"Password "
+"Lost and Found\">Lost your password</a>?"
+msgstr ""
+"<strong>CHYBA</strong>: Nesprávné heslo. <a href=\"%s\" title=\"Obnovení "
+"zapomenutého hesla\">Zapomněli jste heslo?</a>?"
+
+#: loginlockdown.php:413 loginlockdown.php:430
+msgid ""
+"<strong>ERROR</strong>: We’re sorry, but this IP range has been blocked due "
+"to too many recent failed login attempts.<br /><br />Please try again later."
+msgstr ""
+"<strong>CHYBA</strong>: Je nám líto, ale tento rozsah IP adres byl "
+"zablokován kvůli příliš velkému počtu nedávných neúspěšných pokusů o "
+"přihlášení.<br /><br />Zkuste to prosím znovu později."
+
+#: loginlockdown.php:421
+msgid "<strong>ERROR</strong>: Invalid username or incorrect password."
+msgstr "<strong>CHYBA</strong>: Neplatné uživatelské jméno nebo chybné heslo."
+
+#: loginlockdown.php:433
+#, php-format
+msgid ""
+"<strong>ERROR</strong>: Invalid username or incorrect password. <a href=\"%s"
+"\" title=\"Password Lost and Found\">Lost your password</a>?"
+msgstr ""
+"<strong>CHYBA</strong>: Neplatné uživatelské jméno nebo chybné heslo. <a "
+"href=\"%s\" title=\"Obnovení zapomenutého hesla\">Zapomněli jste heslo?</a>?"
