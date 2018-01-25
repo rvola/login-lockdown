@@ -7,4 +7,5 @@ This version takes into account:
 
 ✔︎ Available to be translatable  
 ✔︎ Fully translated into **French**  
+✔︎ Fully translated into **Czech** by [kudlav](https://github.com/kudlav)  
 ✔︎ Adds the last author changes  
